@@ -1,0 +1,10 @@
+.bg-image {
+	background: url('https://images.unsplash.com/photo-1731168168200-23c438871160?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHw4OHx8fGVufDB8fHx8fA%3D%3D')
+			no-repeat,
+		linear-gradient(#eb01a5, #d13531);
+	background-size: cover;
+}
+
+.bg-color {
+	background-color: #223354;
+}

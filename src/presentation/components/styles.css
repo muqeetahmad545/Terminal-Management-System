@@ -1,0 +1,47 @@
+:root {
+	--main-bg-color: #223354;
+	--main-bg-color-opacity: rgba(34, 51, 84, 0.8); /* 80% opacity */
+	/* --mian-contrast-color: #a7c957; */
+	--mian-contrast-color: #f89100;
+}
+.item-list:hover {
+	background: color-mix(in srgb, var(--main-bg-color) 80%, #6264b7);
+}
+.active-menu {
+	background: color-mix(in srgb, var(--main-bg-color) 80%, #6264b7);
+	position: relative;
+}
+.theme-color {
+	background-color: var(--main-bg-color);
+}
+.contrast-color {
+	background-color: var(--mian-contrast-color);
+}
+
+.item-list {
+	transition: all 1s;
+}
+
+.active-menu::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	background-color: var(--mian-contrast-color);
+	height: 70%;
+	width: 4px;
+	border-radius: 10px;
+}
+
+.brand {
+	border-bottom: 1px solid #9fa0a15e;
+}
+
+.main-sidebar ul {
+	height: calc(100% - 110px);
+}
+
+/* .main-sidebar {
+	height: calc(100% - 10px);
+} */
