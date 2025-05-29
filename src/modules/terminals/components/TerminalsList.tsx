@@ -59,7 +59,8 @@ const TerminalsList = () => {
 	// ?HANDLERS
 	// DELETE TERMINAL
 	const onDeleteTerminal = async () => {
-		const data = await terminalUseCases.deleteTerminal(terminalId || -1);
+		if (!terminalId) return;
+		const data = await terminalUseCases.deleteTerminal(terminalId.toString());
 		if (data.status === 'success') {
 			toast.success(data.message);
 			setIsDeleteModel(false);
@@ -175,7 +176,7 @@ const TerminalsList = () => {
 					{terminals.map((terminal, index) => (
 						<AppListItem key={index} appIndex={index}>
 							{/* <AppListCounter index={index} /> */}
-							<span className='flex-1 text-sm'>{'Display Name'}</span>
+							<span className='flex-1 text-sm'>{terminal.display_name}</span>
 							<span className='flex-1 text-sm'>{terminal.serial_number}</span>
 							<span className='flex-1 text-sm'>{terminal.manufacturer}</span>
 							<span className='flex-1 text-sm'>{terminal.model}</span>
@@ -185,7 +186,7 @@ const TerminalsList = () => {
 							<div className='flex items-center justify-end flex-1 gap-2 actions max-w-[112px]'>
 								<AppListActionIconWrapper
 									actionClick={() => {
-										navigate('edit/' + terminal.id);
+										navigate('edit/' + terminal.uuid);
 									}}
 								>
 									<Edit size={18} />

@@ -116,6 +116,9 @@ const TransactionList = () => {
 						</span>
 						<span className='flex-1 text-sm font-medium text-gray-600'>
 							Amount
+						</span>	
+						<span className='flex-1 text-sm font-medium text-gray-600'>
+							App Name
 						</span>
 						<span className='flex-1 text-sm font-medium text-gray-600'>
 							Tender
@@ -143,11 +146,13 @@ const TransactionList = () => {
 							<span className='flex-1 text-sm'>
 								{payment.amount.toFixed(2)}
 							</span>
+							<span className='flex-1 text-sm'>{payment.app_name}</span>
 							<span className='flex-1 text-sm'>{payment.tender_type}</span>
 							<span className='flex-1 text-sm'>
 								{transformDateTimeISO(payment.createdAt).date +
-									' ' +
-									transformDateTimeISO(payment.createdAt).time}
+									' ' 
+									// + transformDateTimeISO(payment.createdAt).time
+									}
 							</span>
 							<TransactionStatus transactionStatus={payment.status} />
 							<div className='flex items-center flex-1 max-w-[112px] justify-between gap-2 actions'>

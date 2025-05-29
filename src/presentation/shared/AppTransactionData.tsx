@@ -1,6 +1,6 @@
 interface AppTransactionDataProps {
 	appTransKey: string;
-	appTransValue: string;
+	appTransValue: string | number;
 	appIsTransBadge?: boolean;
 }
 

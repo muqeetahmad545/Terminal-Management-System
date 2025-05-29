@@ -47,7 +47,7 @@ const OrganizationList = () => {
 	//? HANDLERS
 
 	//DELETE
-	const onDeleteOrganization = async (id: number) => {
+	const onDeleteOrganization = async (id: string) => {
 		const data = organizationUseCase.deleteOrganization(id);
 		if ((await data).status === 'success') {
 			toast.success((await data).message);
@@ -68,14 +68,21 @@ const OrganizationList = () => {
 
 	//UPDATE STATUS
 	const onUpdateOrganizationStatus = async () => {
+		if (!selectedOrganization?.uuid) {
+			toast.error("Organization UUID is missing");
+			return;
+		}
+	
 		const data = await organizationUseCase.updateOrganization(
-			selectedOrganization?.id || -1,
+		
+			selectedOrganization?.uuid,
 			{
 				status: filterParams.status,
 				name: selectedOrganization?.name || '',
 			},
 		);
-
+	console.log("data",data.data),
+	console.log("selectedOrganization",selectedOrganization)
 		if (data.success) {
 			toast.success(data.data?.message || '');
 			setIsStatusModel(false);
@@ -151,7 +158,7 @@ const OrganizationList = () => {
 								<div className='flex items-center justify-end flex-1 gap-2 actions max-w-[112px]'>
 									<AppListActionIconWrapper
 										actionClick={() => {
-											navigate('edit/' + org.id);
+											navigate('edit/' + org.uuid);
 										}}
 									>
 										<Edit size={18} />
@@ -204,7 +211,7 @@ const OrganizationList = () => {
 							<AppButton
 								appBtnText='Delete'
 								appButtonOnClick={() =>
-									onDeleteOrganization(selectedOrganization?.id || -1)
+									onDeleteOrganization(selectedOrganization?.id)
 								}
 							/>
 						</div>

@@ -6,6 +6,7 @@ interface AppInputFiledInterface {
 	appInputName?: string;
 	appInputValue?: string;
 	appInputType?: string;
+	appInputMin?: string;  
 }
 
 const AppInputField = ({
@@ -14,6 +15,7 @@ const AppInputField = ({
 	appInputName,
 	appInputValue,
 	appInputType,
+	appInputMin,
 }: AppInputFiledInterface) => {
 	return (
 		<>
@@ -22,6 +24,7 @@ const AppInputField = ({
 				name={appInputName}
 				value={appInputValue}
 				type={appInputType || 'text'}
+				min={appInputMin}  
 				className={`${
 					appIsBgDark ? 'bg-transparent text-white ' : ''
 				} relative top-0 left-0 w-full h-full px-3 text-xs text-gray-700 border-none rounded-md focus:outline-gray-200`}

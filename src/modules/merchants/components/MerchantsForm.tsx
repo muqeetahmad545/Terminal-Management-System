@@ -24,7 +24,7 @@ const initialPayload = {
 	pin: '',
 	email: '',
 	phone: '',
-	organization_id: null,
+	organization_id: '',
 	status: 'Active',
 };
 
@@ -57,8 +57,9 @@ const MerchantsForm = () => {
 	const onOrganizationChange = (value: string) => {
 		setMerchantPayload((prev) => ({
 			...prev,
-			organization_id: parseInt(value),
+			organization_id: (value),
 		}));
+		console.log()
 	};
 
 	// HANDLE CREATE MERCHANT
@@ -67,7 +68,7 @@ const MerchantsForm = () => {
 			const data = paramId
 				? await merchantUsecases.updateMerchant(
 						merchantPayload,
-						parseInt(paramId),
+						(paramId),
 				  )
 				: await merchantUsecases.createMerchant(merchantPayload);
 
@@ -83,7 +84,7 @@ const MerchantsForm = () => {
 					...prev,
 					organization_id: paramId
 						? merchantPayload.organization_id
-						: parseInt(organizations[0].value),
+						: (organizations[0].value),
 				}));
 			}
 		} catch (error) {
@@ -97,19 +98,19 @@ const MerchantsForm = () => {
 		const data = await getOrganozations();
 		const res = data.map((organization) => ({
 			label: organization.name,
-			value: organization.id?.toString() || '',
+			value: organization.uuid,
 		}));
-		setOrganizations(res);
+		setOrganizations(res as any);
 
 		// SET DEFAULT ORGANIZATION ID
 		if (data.length)
-			setMerchantPayload((prev) => ({ ...prev, organization_id: data[0].id }));
+			setMerchantPayload((prev) => ({ ...prev, organization_id: data[0].uuid}));
 	};
 
 	// FIND MERCHANT DETAILS
 	const findMerchantDetails = async () => {
 		const data = await merchantUsecases.findMerchantByPK(
-			parseInt(paramId || ''),
+			(paramId || ''),
 		);
 
 		setMerchantPayload({
@@ -140,7 +141,7 @@ const MerchantsForm = () => {
 	return (
 		<div className='p-5 bg-white rounded-md'>
 			<AppListHeader
-				appListTitle='Create Merchant'
+				appListTitle={paramId ? 'Update Merchant' : 'Create Merchant'}
 				applistTitleIcon={<Users />}
 				appIsDisplay={false}
 			/>
@@ -211,7 +212,7 @@ const MerchantsForm = () => {
 							options={organizations}
 							defaultOption='Please select organization'
 							onChange={onOrganizationChange}
-							value={merchantPayload.organization_id?.toString()}
+							value={merchantPayload.organization_id}
 						/>
 					</AppInputWrapper>
 				</AppInputWrapperFlexContainer>

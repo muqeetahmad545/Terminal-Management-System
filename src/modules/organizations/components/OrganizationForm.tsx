@@ -73,7 +73,7 @@ const OrganizationForm = () => {
 		try {
 			const data = oranizationId
 				? await organizationUseCase.updateOrganization(
-						parseInt(oranizationId),
+						(oranizationId),
 						organizationPayload,
 				  )
 				: await organizationUseCase.create(organizationPayload);
@@ -100,7 +100,7 @@ const OrganizationForm = () => {
 
 	// GET ORGNAIZATION DETAILS
 	const organizationDetails = async () => {
-		const data = await getOrganization(parseInt(oranizationId || ''));
+		const data = await getOrganization((oranizationId || ''));
 		setPayload((prev) => ({
 			...prev,
 			name: data.name,
@@ -147,7 +147,7 @@ const OrganizationForm = () => {
 	return (
 		<div className='p-5 bg-white rounded-md'>
 			<AppListHeader
-				appListTitle='Create Orgonization'
+				appListTitle={`${oranizationId ? 'Update Orgonization' : 'Create Orgonization'}`}
 				applistTitleIcon={<Building2 />}
 				appIsDisplay={false}
 			/>

@@ -37,7 +37,7 @@ const MerchantsList = () => {
 
 	const [isDeleteModal, setIsDeleteModal] = useState<boolean>(false);
 	const [isFilterModal, setIsFilterModal] = useState<boolean>(false);
-	const [merchantId] = useState<number>();
+	const [merchantId] = useState<string | number | any>();
 	const [filterParams, setFilterParams] =
 		useState<UserFilterParams>(initialParams);
 	const [organizations, setOrganizations] = useState<OrganizationOption[]>([]);
@@ -55,7 +55,7 @@ const MerchantsList = () => {
 	//? HANDLERS
 
 	// DELETE MERCAHNT
-	const onDeleteMerchant = async (id: number) => {
+	const onDeleteMerchant = async (id: string) => {
 		const data = await merchantUsecases.deleteMerchant(id);
 		if (data.status == 'success') {
 			toast.success(data.message);
@@ -197,7 +197,7 @@ const MerchantsList = () => {
 								<div className='flex items-center justify-between max-w-[112px] flex-1 gap-2 actions'>
 									<AppListActionIconWrapper
 										actionClick={() => {
-											navigate(`edit/${merchant.id}`);
+											navigate(`edit/${merchant.uuid}`);
 										}}
 									>
 										<Edit size={18} />
