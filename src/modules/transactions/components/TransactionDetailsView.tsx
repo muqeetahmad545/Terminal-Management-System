@@ -10,7 +10,6 @@ import { TransactionRepositry } from "../../../data/repositries/Transactions/Tra
 import { TransactionUseCases } from "../../../domain/usecases/transactions/terminalUsecases";
 import { useParams } from "react-router-dom";
 import { transformDateTimeISO } from "../../../utills/TransformISODateTime";
-import { WaveLine } from "../../../presentation/shared/WaveLine";
 
 const TransactionDetailsView = () => {
   //? HOOKS
