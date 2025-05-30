@@ -4,6 +4,7 @@ import { Terminal } from "./Terminals";
 export interface Transactions {
   id: string;
   uuid: number;
+  transaction_type: string;
   merchant: Merchant;
   createdAt: string;
   app_name: string;

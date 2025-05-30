@@ -3,6 +3,7 @@ import AppLoader from './AppLoader';
 interface AppButtonProps {
 	appButtonOnClick?: (e: React.MouseEvent) => void;
 	appBtnText?: string;
+	icon?: string;
 	appIsBtnRadius?: boolean;
 	appIsOutlineBtn?: boolean;
 	appIsShortBtn?: boolean;
@@ -18,6 +19,7 @@ const AppButton = ({
 	appIsShortBtn,
 	appIsBgDark,
 	appIsLoader,
+	icon,
 }: AppButtonProps) => {
 	return (
 		<button
@@ -34,10 +36,12 @@ const AppButton = ({
 
 			${appIsBgDark ? '!bg-orange-500' : ''}
 			
-			
+						${icon}
+
 			text-sm     font-normal  px-3    py-2.5`}
 		>
 			{appIsLoader ? <AppLoader /> : appBtnText || 'Create'}
+
 		</button>
 	);
 };

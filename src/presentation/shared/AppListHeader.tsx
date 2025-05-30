@@ -27,10 +27,10 @@ const AppListHeader = ({
 				{appIsDisplay && (
 					<div
 						onClick={appListNavigate}
-						className='text-gray-500 cursor-pointer actions'
-					>
-						<PlusCircle className='inline-block ' size={17} />{' '}
-						<span className='text-sm'>Add new {appListTitle}</span>
+						className='text-gray-500 cursor-pointer actions border border-gray-300 p-2 rounded-md bg-[#223354] hover:bg-[#f89100] hover:text-white'
+						>
+						<PlusCircle className='inline-block text-white ' size={17} />{' '}
+						<span className='text-sm text-white'>Add new {appListTitle}</span>
 					</div>
 				)}
 				{appIsFileUpload && (

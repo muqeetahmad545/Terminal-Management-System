@@ -9,6 +9,7 @@ const AppTransactionData = ({
 	appTransValue,
 	appIsTransBadge,
 }: AppTransactionDataProps) => {
+	const normalizedValue = String(appTransValue).toLowerCase();
 	const colorClasses: Record<string, string> = {
 		Approved: 'bg-green-50 border border-green-300 text-green-600',
 		Declined: 'bg-red-50 border border-red-300 text-red-600',
@@ -16,9 +17,10 @@ const AppTransactionData = ({
 		Refunded: 'bg-blue-50 border border-blue-300 text-blue-600',
 		Failed: 'bg-red-50 border border-red-300 text-red-600',
 		Reversed: 'bg-purple-50 border border-purple-300 text-purple-600',
+		confirmed: 'bg-green-50 border border-green-300 text-green-600',
 	};
 	const status =
-		colorClasses[appTransValue] ||
+		colorClasses[normalizedValue] ||
 		'bg-gray-50 border border-gray-300 text-gray-600';
 	return (
 		<p className='flex items-center justify-between mb-6 text-sm text-gray-500 rounded-md'>

@@ -138,7 +138,7 @@ const TerminalsList = () => {
 					appListInactiveCount={recordStats.inactive}
 				/>
 			</div>
-			<div className=' p-5 bg-white organizations  rounded-[5px]  '>
+			<div className=' p-5 bg-white organizations  rounded-[10px] border mb-5 '>
 				<AppListHeader
 					applistTitleIcon={<TabletSmartphone />}
 					appListTitle='terminals'
@@ -149,7 +149,7 @@ const TerminalsList = () => {
 					appIsFileUpload={true}
 					appFileUploading={(e) => onMerchantsUpload(e)}
 				/>
-				<ul className='sticky mt-5'>
+				<ul className='sticky mt-5 '>
 					<AppListItem>
 						<span className='flex-1 py-1 text-sm font-medium text-gray-600 '>
 							Terminal Name

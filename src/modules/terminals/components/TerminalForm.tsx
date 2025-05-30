@@ -48,6 +48,8 @@ const TerminalForm = () => {
 	const [terminalPayload, setTerminalPayload] =
 		useState<Terminal>(initialPayload);
 	const [errors, setErrors] = useState<Terminal>();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
 	//? HOOKS
 	const { findAllMerchants } = useMerchant();
 	const { terminalUseCases, id } = useTerminals();
@@ -89,6 +91,7 @@ const TerminalForm = () => {
 
 	// HANDLE CREATE TERMINAL
 	const onCreateTerminal = async () => {
+		setIsLoading(true);
 		try {
 			const data = id
 				? await terminalUseCases.updateTerminal(terminalPayload, (id))
@@ -106,6 +109,9 @@ const TerminalForm = () => {
 			const axiosEror = error as AxiosError;
 			APIErrorMessageResonse(axiosEror);
 		}
+		finally {
+			setIsLoading(false);
+		  }
 	};
 
 	// Find Terminal Details
@@ -326,6 +332,7 @@ const TerminalForm = () => {
 					<AppButton
 						appBtnText={id ? 'Updated' : 'Create'}
 						appButtonOnClick={onCreateTerminal}
+				        appIsLoader={isLoading}
 					/>
 				</div>
 			</div>

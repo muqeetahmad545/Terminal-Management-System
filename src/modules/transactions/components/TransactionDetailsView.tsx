@@ -10,6 +10,7 @@ import { TransactionRepositry } from "../../../data/repositries/Transactions/Tra
 import { TransactionUseCases } from "../../../domain/usecases/transactions/terminalUsecases";
 import { useParams } from "react-router-dom";
 import { transformDateTimeISO } from "../../../utills/TransformISODateTime";
+import { WaveLine } from "../../../presentation/shared/WaveLine";
 
 const TransactionDetailsView = () => {
   //? HOOKS
@@ -50,9 +51,10 @@ const TransactionDetailsView = () => {
         <div className="col-span-2">
           {/* TRANSACTION DETAILS */}
           <div className="grid grid-cols-2 gap-5 mb-5 ">
-            <div className="relative p-5 bg-white rounded-md col-span-2ddd h-auto">
-              <div className="pb-5 border-b border-gray-100 transaction-header">
-                <strong className="text-xl font-medium text-gray-600 ">
+            <div className=" relative p-5 bg-white rounded-md shadow-sm border border-gray-200 hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transition-all duration-200">
+        
+            <div className="pb-5 border-b border-gray-200 transaction-header text-center">
+            <strong className="text-5xl font-medium text-gray-600">
                   {transaction?.merchant?.organization?.currency} - {transaction?.amount}
                 </strong>
                 <p className="mt-2 text-sm text-gray-500">
@@ -60,17 +62,18 @@ const TransactionDetailsView = () => {
                   {transformDateTimeISO(createdAt || fallbackDate).time}
                 </p>
               </div>
-              <div className="pb-5 mt-5 text-sm text-gray-500 border-b border-gray-100 transaction-card-data">
+              <div className="pb-5 mt-10 text-sm text-gray-500 border-b border-gray-200 transaction-card-data ">
                 <AppTransactionData
                   appTransKey="Status"
                   appTransValue={transaction?.status || ""}
                   appIsTransBadge={true}
                 />
-                <AppTransactionData
+
+                {/* <AppTransactionData
                   appTransKey="Type"
                   appTransValue="Sale Card"
                   appIsTransBadge={true}
-                />
+                /> */}
                 <AppTransactionData
                   appTransKey="Tender Type"
                   appTransValue={transaction?.tender_type || ""}
@@ -79,19 +82,25 @@ const TransactionDetailsView = () => {
               </div>
 
               {/* <div className='absolute left-0 flex justify-center w-full gap-4 px-5 bottom-5 transaction-actions'> */}
-              <div className="pb-5 mt-14 text-sm  transaction-card-data">
+              <div className="pb-5 mt-5 text-sm  transaction-card-data">
               <AppTransactionData 
                   appTransKey="App Name"
                   appTransValue={transaction?.app_name || ""}
                   appIsTransBadge={true}
+                /> 
+                <AppTransactionData 
+                  appTransKey="Transaction Type"
+                  appTransValue={transaction?.transaction_type || ""}
+                  appIsTransBadge={true}
                 />
                 {/* <AppButton appIsBtnRadius={true} appBtnText='Customer ' />
 								<AppButton appIsBtnRadius={true} appBtnText='Merchant ' /> */}
+                
 							</div>
             </div>
             <div className="">
-              <div className="p-5 mb-5 bg-white rounded-md">
-                <AppTransactionCardHeader appTransactionCardTitle="Merchant Information" />
+            <div className="p-5 mb-5 bg-white rounded-md shadow-sm border border-gray-200 hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transition-all duration-200">
+            <AppTransactionCardHeader appTransactionCardTitle="Merchant Information" />
                 <div className="transaction-card-data">
                   <AppTransactionData
                     appTransKey="Name"
@@ -103,8 +112,8 @@ const TransactionDetailsView = () => {
                   />
                 </div>
               </div>
-              <div className="p-5 bg-white rounded-md">
-                <AppTransactionCardHeader appTransactionCardTitle="Transactions" />
+              <div className="p-5 bg-white rounded-md shadow-sm border border-gray-200 hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transition-all duration-200">
+              <AppTransactionCardHeader appTransactionCardTitle="Transactions" />
                 <div className="transaction-card-data">
                   <AppTransactionData
                     appTransKey="RRN"
@@ -124,8 +133,8 @@ const TransactionDetailsView = () => {
           </div>
 
           {/* EMV DETAILS */}
-          <div className="p-5 mb-5 bg-white rounded-md">
-            <AppTransactionCardHeader appTransactionCardTitle="EMV Details" />
+          <div className="p-5 mb-5 bg-white rounded-md shadow-sm border border-gray-200 hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transition-all duration-200">
+          <AppTransactionCardHeader appTransactionCardTitle="EMV Details" />
             <div className="flex items-center justify-between gap-10 transaction-card-data">
               <div className="flex-1 ">
                 <AppTransactionData
@@ -175,8 +184,8 @@ const TransactionDetailsView = () => {
           </div>
 
           {/* TERMINAL DETAILS */}
-          <div className="p-5 mb-5 bg-white rounded-md">
-            <AppTransactionCardHeader appTransactionCardTitle="Terminal information" />
+          <div className="p-5 mb-5 bg-white rounded-md shadow-sm border border-gray-200 hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transition-all duration-200">
+          <AppTransactionCardHeader appTransactionCardTitle="Terminal information" />
             <div className="flex items-center justify-between gap-10 transaction-card-data">
               <div className="flex-1">
                 <AppTransactionData
@@ -261,14 +270,14 @@ const TransactionDetailsView = () => {
 
           {/* MAP */}
           {latitude !== 0 && longitude !== 0 && (
-          <div className="p-5 mb-5 bg-white rounded-md">
+        <div className="p-5 mb-5 bg-white rounded-md shadow-sm border border-gray-200 hover:shadow-md hover:border-gray-300 hover:bg-gray-50 transition-all duration-200">
             <AppTransactionCardHeader
               appIsTrasactionButton={true}
               appTransactionCardTitle="Map"
             />
             <div
               className="border border-gray-100 rounded-md overflow-hidden"
-              style={{ height: "400px" }}
+              style={{ height: "440px" }}
             >
               <iframe
                 width="100%"

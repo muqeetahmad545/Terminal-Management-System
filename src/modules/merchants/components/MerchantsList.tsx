@@ -135,7 +135,7 @@ const MerchantsList = () => {
 					appListInactiveCount={recordStats.inactive}
 				/>
 			</div>
-			<div className=' p-5 bg-white organizations  rounded-[5px] relative '>
+			<div className=' p-5 bg-white organizations  rounded-[10px] relative border mb-5'>
 				<AppListHeader
 					applistTitleIcon={<Users />}
 					appListTitle='merchants'

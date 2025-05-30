@@ -41,6 +41,8 @@ const MerchantsForm = () => {
 		useState<Merchant>(initialPayload);
 
 	const [errors, setErrors] = useState<Merchant>();
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+
 
 	//? HOOKS
 	const { getOrganozations } = useOrganizations();
@@ -64,6 +66,7 @@ const MerchantsForm = () => {
 
 	// HANDLE CREATE MERCHANT
 	const onCreateMerchant = async () => {
+		setIsLoading(true);
 		try {
 			const data = paramId
 				? await merchantUsecases.updateMerchant(
@@ -91,6 +94,9 @@ const MerchantsForm = () => {
 			const axiosEror = error as AxiosError;
 			APIErrorMessageResonse(axiosEror);
 		}
+		finally {
+			setIsLoading(false); 
+		  }
 	};
 
 	// GET LIST OF ORGANIZATIONS
@@ -139,7 +145,7 @@ const MerchantsForm = () => {
 	}, [paramId]);
 
 	return (
-		<div className='p-5 bg-white rounded-md'>
+		<div className='p-5 bg-white rounded-md '>
 			<AppListHeader
 				appListTitle={paramId ? 'Update Merchant' : 'Create Merchant'}
 				applistTitleIcon={<Users />}
@@ -248,6 +254,7 @@ const MerchantsForm = () => {
 					<AppButton
 						appBtnText={paramId ? 'Update' : 'Create'}
 						appButtonOnClick={onCreateMerchant}
+						appIsLoader={isLoading}
 					/>
 				</div>
 			</div>

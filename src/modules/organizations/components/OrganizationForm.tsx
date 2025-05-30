@@ -43,6 +43,7 @@ const OrganizationForm = () => {
 	const [country, setCountry] = useState<string>('');
 	const [region, setRegion] = useState<string>('');
 	const [payload, setPayload] = useState<Organization>(initialPayload);
+	const [isLoading, setIsLoading] = useState<boolean>(false);
 
 	//? HOOKS
 	const { oranizationId, organizationUseCase, getOrganization } =
@@ -60,6 +61,7 @@ const OrganizationForm = () => {
 
 	// Handle Form Submit
 	const handleCreateOrganization = async () => {
+		setIsLoading(true);
 		setErros({});
 		const organizationPayload = {
 			...payload,
@@ -89,13 +91,16 @@ const OrganizationForm = () => {
 				setCountry(oranizationId ? payload?.country || '' : '');
 				setRegion(oranizationId ? payload?.state || '' : '');
 				toast.success((await data.data)?.message || '');
+
 			}
 		} catch (error) {
 			setPayload(payload);
 			setCountry(payload?.country || '');
 			setCountry(payload?.state || '');
 			if (error instanceof AxiosError) APIErrorMessageResonse(error);
-		}
+		}finally {
+			setIsLoading(false)
+		  }
 	};
 
 	// GET ORGNAIZATION DETAILS
@@ -279,6 +284,7 @@ const OrganizationForm = () => {
 					<AppButton
 						appBtnText={`${oranizationId ? 'Update' : 'Create'}`}
 						appButtonOnClick={handleCreateOrganization}
+						appIsLoader={isLoading}
 					/>
 				</div>
 			</div>

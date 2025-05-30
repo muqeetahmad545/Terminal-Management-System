@@ -104,7 +104,7 @@ const TransactionList = () => {
 					appListInactiveCount={30}
 				/>
 			</div>
-			<div className=' bg-white  rounded-[5px] p-5'>
+			<div className=' bg-white  rounded-[10px] p-5 border mb-5'>
 				<AppListHeader
 					applistTitleIcon={<Banknote />}
 					appListTitle='transactions'
